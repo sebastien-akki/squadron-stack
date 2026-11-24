@@ -1,0 +1,72 @@
+{
+  "id": "stack",
+  "version": "0.1.0",
+  "api": 1,
+  "squadron": ">=0.56.0",
+  "name": {
+    "en": "Stack health",
+    "fr": "Santé de la stack"
+  },
+  "description": {
+    "en": "Each project's stack at a glance: PHP, Symfony, Drupal, Sylius, Node and database versions against their end of life, and the known vulnerabilities of the locked Composer and npm packages. Scanned again every day, with a notification when something new comes up and one click to ask an agent for the updates.",
+    "fr": "La stack de chaque projet d’un coup d’œil : versions de PHP, Symfony, Drupal, Sylius, Node et de la base face à leur fin de vie, et failles connues des paquets Composer et npm verrouillés. Réanalysée chaque jour, avec une notification quand quelque chose de nouveau apparaît et un clic pour confier les mises à jour à un agent."
+  },
+  "logo": "logo.svg",
+  "wasm": "target/wasm32-wasip2/release/stack.wasm",
+  "permissions": {
+    "exec": [
+      "git",
+      "docker",
+      "id"
+    ],
+    "network": [
+      "endoflife.date"
+    ]
+  },
+  "contributes": {
+    "items": [
+      {
+        "slot": "agent.tools",
+        "id": "stack",
+        "label": {
+          "en": "Stack health",
+          "fr": "Santé de la stack"
+        },
+        "hint": {
+          "en": "Versions at end of life and known vulnerabilities of this project",
+          "fr": "Versions en fin de vie et failles connues de ce projet"
+        },
+        "icon": "logo",
+        "words": [
+          "audit",
+          "cve",
+          "security",
+          "sécurité",
+          "eol",
+          "versions",
+          "composer",
+          "npm"
+        ],
+        "action": {
+          "panel.open": "main"
+        }
+      }
+    ],
+    "panels": [
+      {
+        "id": "main",
+        "title": {
+          "en": "Stack health",
+          "fr": "Santé de la stack"
+        },
+        "page": "panel/index.html"
+      }
+    ],
+    "tools": [
+      {
+        "name": "report",
+        "description": "Scans this project now and reports its versions against their end of life (PHP, Symfony, Drupal, Sylius, Node.js, MariaDB/MySQL) and the known vulnerabilities of its locked Composer and npm packages."
+      }
+    ]
+  }
+}
